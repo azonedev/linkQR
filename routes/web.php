@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FacebookAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubAuthController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ Route::prefix('auth')->group(function () {
 
     Route::get('/github',[GithubAuthController::class,'redirect']);
     Route::get('/github/callback',[GithubAuthController::class,'loginGithub']);
+
+    Route::get('/google',[GoogleAuthController::class,'redirect']);
+    Route::get('/google/callback',[GoogleAuthController::class,'loginGoogle']);
 
     Route::get('/facebook',[FacebookAuthController::class,'redirect']);
     Route::get('/facebook/callback',[FacebookAuthController::class,'loginFacebook']);

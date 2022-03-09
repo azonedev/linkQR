@@ -11,7 +11,9 @@
 
                 <div class="p-3"></div>
 
-                <button class="btn btn-primary mt-2"><img src="/assets/icons/google.svg" alt=""> Google</button>
+                <a href="{{url('/auth/google')}}">
+                    <button class="btn btn-primary mt-2"><img src="/assets/icons/google.svg" alt=""> Google</button>
+                </a>
                 
                 <a href="{{url('/auth/github')}}">
                     <button class="btn btn-success mt-2"><img src="/assets/icons/github.svg" alt=""> Github</button>

@@ -45,4 +45,11 @@ return [
         'redirect' => 'https://127.0.0.1:8000/auth/facebook/callback',
     ],
 
+    // google auth key
+    'google' => [
+        'client_id' => env('GL_CLIENT_ID'),
+        'client_secret' => env('GL_CLIENT_SECRET'),
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
+    ],
+
 ];

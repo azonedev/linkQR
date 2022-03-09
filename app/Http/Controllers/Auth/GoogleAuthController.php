@@ -9,23 +9,23 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
-class FacebookAuthController extends Controller
+class GoogleAuthController extends Controller
 {
     public function redirect()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
-    public function loginFacebook()
+    public function loginGoogle()
     {
-        $user = Socialite::driver('facebook')->stateless()->user();
+        $user = Socialite::driver('google')->stateless()->user();
 
         $data['name'] = $user->name;
         $data['mail'] = $user->email;
         $data['social_auth_id'] = $user->token;
 
         $isUser = User::where('mail',$data['mail'])->first();
-
+        
         try {
             if($isUser){
                 $this->sessionLogin($isUser);
