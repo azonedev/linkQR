@@ -12,10 +12,15 @@
 
     <link rel="stylesheet" href="{{asset('/')}}assets/css/style.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {{-- toaster notification --}}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 
     {{-- template-css: write css that you need on current page/tempalte --}}
     @yield('template-css')
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 
 </head>
 

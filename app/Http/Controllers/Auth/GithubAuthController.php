@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -25,14 +26,23 @@ class GithubAuthController extends Controller
 
         $isUser = User::where('mail',$data['mail'])->first();
 
-        if($isUser){
-            $this->sessionLogin($isUser);
-            return redirect('/');
-        }else{
-            User::insert($data);
-            $user = User::where('mail',$data['mail'])->first();
-            $this->sessionLogin($user);
-            return redirect('/');
+        try {
+            if($isUser){
+                $this->sessionLogin($isUser);
+                
+                Toastr::success('Logged in ');
+                return redirect('/');
+            }else{
+                User::insert($data);
+                $user = User::where('mail',$data['mail'])->first();
+                $this->sessionLogin($user);
+    
+                Toastr::success('Logged in ');
+                return redirect('/');
+            }
+        } catch (\Exception $ex) {
+            Toastr::warning('Faild to login, try again');
+            return redirect('auth');
         }
     }
 
