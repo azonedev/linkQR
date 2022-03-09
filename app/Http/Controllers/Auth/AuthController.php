@@ -10,6 +10,11 @@ class AuthController extends Controller
 {
     public function login()
     {
+        if(Session('user_id')){
+
+            Toastr::warning('You are already logged in');
+            return redirect('/');
+        }
         return view('login');
     }
 
