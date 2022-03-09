@@ -48,6 +48,7 @@ class GoogleAuthController extends Controller
 
     protected function sessionLogin($data)
     {
+        Session::put('user_id',$data->id);
         Session::put('user_token',$data->social_auth_id);
         Session::put('user_mail',$data->mail);
         Session::put('user_name',$data->name);
