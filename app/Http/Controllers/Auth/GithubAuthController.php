@@ -42,7 +42,7 @@ class GithubAuthController extends Controller
             }
         } catch (\Exception $ex) {
             Toastr::warning('Faild to login, try again');
-            return redirect('auth');
+            return redirect('auth/login');
         }
     }
 

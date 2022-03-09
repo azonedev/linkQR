@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubAuthController;
 
@@ -20,10 +21,13 @@ Route::get('/', function () {
 
 Route::prefix('auth')->group(function () {
 
-    Route::get('/',function(){ 
-        return view('login');
-     });
+    Route::get('/login',[AuthController::class,'login']);
+    Route::get('/logout',[AuthController::class,'logout']);
 
     Route::get('/github',[GithubAuthController::class,'redirect']);
     Route::get('/github/callback',[GithubAuthController::class,'loginGithub']);
+});
+
+Route::group(['middleware' => 'UserAction'], function () {
+
 });
