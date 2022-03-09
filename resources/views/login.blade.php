@@ -17,7 +17,9 @@
                     <button class="btn btn-success mt-2"><img src="/assets/icons/github.svg" alt=""> Github</button>
                 </a>
 
-                <button class="btn btn-blue mt-2"> <img src="/assets/icons/facebook.svg" alt=""> Facebook</button>
+                <a href="{{url('/auth/facebook')}}">
+                    <button class="btn btn-blue mt-2"> <img src="/assets/icons/facebook.svg" alt=""> Facebook</button>
+                </a>
             </div>
 
             <div class="col-md-3"></div> <!-- for speacing-->

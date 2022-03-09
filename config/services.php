@@ -38,4 +38,11 @@ return [
         'redirect' => 'http://127.0.0.1:8000/auth/github/callback',
     ],
 
+    // facebook auth key
+    'facebook' => [
+        'client_id' => env('FB_CLIENT_ID'),
+        'client_secret' => env('FB_CLIENT_SECRET'),
+        'redirect' => 'https://127.0.0.1:8000/auth/facebook/callback',
+    ],
+
 ];
