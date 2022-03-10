@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\LinkGenerateController;
+use App\Http\Controllers\UrlRedirectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,6 @@ Route::prefix('auth')->group(function () {
 Route::group(['middleware' => 'UserAction'], function () {
 
 });
+
+// --------- URL Redirect --------- //
+Route::get('/{short_key}',[UrlRedirectController::class,'redirectURL']);
