@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'long_url',
+        'short_key',
+        'expire_date',
+        'user_id',
+        'loadlimit',
+        'within',
+        'blockfor'
+    ];
 }

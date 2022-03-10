@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('long_url');
             $table->string('short_key');
-            $table->date('expire_date');
-            $table->bigInteger('user_id');
+            $table->date('expire_date')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->integer('loadlimit')->default(3);
             $table->integer('within')->default(1);
             $table->integer('blockfor')->default(5);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
         });
     }
 

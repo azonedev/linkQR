@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\FacebookAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GithubAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\LinkGenerateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\Auth\GoogleAuthController;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::post('link-generate',[LinkGenerateController::class,'generate']);
 
 Route::prefix('auth')->group(function () {
 
