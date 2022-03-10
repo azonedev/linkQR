@@ -6,7 +6,7 @@
     <section id="link-block" class="row">
         <!-- input link -->
             <div class="col-md-6 pt-5" id="link-input">
-                <div class="input-group">
+                <div class="input-group pt-4">
                     <input type="url" name="url" placeholder="Enter your link" class="form-control" id="long-url">
                 </div>
                 <div class="my-3 row">
@@ -35,17 +35,17 @@
                     <div class="text-center">
                         
                         <label class="mr-2" for="date-check" aria-describedby="link-copy-sm">
-                            <input type="text" class="border-0" value="https://url.azonedev.com/Xn3j5a" id="short-url">
+                            <input type="text" class="border-0" value="https://url.azonedev.com/short" id="short-url">
                         </label>
                         <button class="btn btn-sm btn-blue" id="copy-btn-sm"> 
                             <img src="{{asset('/')}}assets/icons/copy.svg" alt="">
                         </button>
                     </div>
 
-                    <img class="mt-4" src="https://api.qrserver.com/v1/create-qr-code/?data=mail@abdullahme.com&bgcolor=3DBCF9&color=FFFFFF">
+                    <img class="mt-4" src="{{asset('/')}}assets/images/default-qr.png" id="qr-output">
 
                     <div class="p-4">
-                        <button class="btn btn-info ms-auto"><img src="{{asset('/')}}assets/icons/download.svg" alt=""> QR</button>
+                        <a href="" download class="btn btn-info ms-auto" id="qr-download"><img src="{{asset('/')}}assets/icons/download.svg" id="qr-image"> QR</a>
                         <button class="btn btn-blue me-auto" id="copy-btn"><img src="{{asset('/')}}assets/icons/copy.svg" alt=""> URL</button>
                     </div>
 
@@ -56,6 +56,7 @@
 @endsection
 
 @section('template-script')
+    <!-- users interactive scripts for home page  -->
     <script src="{{asset('/')}}assets/js/app.js"></script>
     
     {{-- axios for ajax request & response --}}
@@ -64,6 +65,8 @@
     {{-- link generate & response script --}}
     <script>
         const linkGenerateBtn = document.getElementById('link-generate-btn');
+        const shortUrlOutput = document.getElementById('short-url');
+        const qrOutput = document.getElementById('qr-output');
 
         linkGenerateBtn.addEventListener('click',()=>{
             let longUrl = document.getElementById('long-url').value;
@@ -83,7 +86,14 @@
                 expire_date: expireDate
             })
             .then(function (response) {
-                console.log(response.data);
+                let shortKey = response.data.short_key;
+                let shortUrl = `{{url('/')}}/${shortKey}`;
+                
+                let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${shortUrl}&bgcolor=3DBCF9&color=FFFFFF`;
+
+                shortUrlOutput.value = shortUrl;  
+                qrOutput.src = qrUrl;
+                
             })
             .catch(function (error) {
                 console.log(error);

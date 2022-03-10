@@ -35,3 +35,10 @@ copyBtn.addEventListener('click',function(){
         copyBtn.style.background = "#00288A";
     }, 1000);
 });
+
+// download qr code's image
+let downloadBtn = document.getElementById('qr-download');
+downloadBtn.addEventListener('click',function(){
+    let qrSrc = document.getElementById('qr-output').src;
+    downloadBtn.href = qrSrc;
+});

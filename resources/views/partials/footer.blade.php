@@ -1,7 +1,7 @@
     <hr>
     <footer class="text-center p-3">
         <span class="first-brand">Link</span> <span class="last-brand">QR</span> | <a
-            href="https://azonedev.com">azOneDev</a> &copy; 2022
+            href="https://azonedev.com">azOneDev</a> &copy; {{date('Y')}}
     </footer>
 
     <!-- JavaScript Bundle with Popper -->
