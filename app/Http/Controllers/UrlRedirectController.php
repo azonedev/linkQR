@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\CheckExpireDate;
 use App\Models\Link;
+use App\Services\SpamProtection;
 use Brian2694\Toastr\Facades\Toastr;
 
 class UrlRedirectController extends Controller
@@ -20,7 +21,7 @@ class UrlRedirectController extends Controller
 
         $is_expired = CheckExpireDate::isExpired($url_data->expire_date);
 
-        // check the link found on db or not
+        // check the link found on db or is the link expired
         if(is_null($url_data) || $is_expired===true){
             Toastr::warning("Request url isn't found");
             return redirect('/');
