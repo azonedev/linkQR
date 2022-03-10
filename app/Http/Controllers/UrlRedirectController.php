@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CheckExpireDate;
 use App\Models\Link;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\returnSelf;
 
 class UrlRedirectController extends Controller
 {
@@ -20,8 +18,10 @@ class UrlRedirectController extends Controller
         
         $url_data = Link::where('short_key',$short_key)->first();
 
+        $is_expired = CheckExpireDate::isExpired($url_data->expire_date);
+
         // check the link found on db or not
-        if(is_null($url_data)){
+        if(is_null($url_data) || $is_expired===true){
             Toastr::warning("Request url isn't found");
             return redirect('/');
         }
