@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Link;
 use App\Models\Visitor;
+use App\Services\VisitorsReport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -22,10 +24,10 @@ class DashboardController extends Controller
         // total clicks of all or speacific link
         $total_clicks = Visitor::whereIn('link_id',$link_id)->count();
 
+        $locationChartData = VisitorsReport::byLocation($link_id);
 
+        // return $locationChartData;
 
-        // return $active_links;
-
-        return view('dashboard',compact('links','total_clicks'));
+        return view('dashboard',compact('links','total_clicks','locationChartData'));
     }
 }
