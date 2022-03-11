@@ -21,7 +21,23 @@ class VisitorsReport{
         return ['labels'=>$labels,'values'=>$values];
     }
 
+    public static function byGroup($link_id,$group_by)
+    {
+        $data = Visitor::select([
+            DB::raw("$group_by(created_at) as labels"),
+            DB::raw("(COUNT(*)) as count"),
+        ])
+        ->whereIn('link_id',$link_id)
+        ->groupBy('labels')
+        ->get();
 
+        if($group_by=='month'){
+            $month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        }else{
+            $month = null;
+        }
+        return json_encode(VisitorsReport::getLabelValuesByData($data,$month));
+    }
     public static function byLocation($link_id)
     {
         

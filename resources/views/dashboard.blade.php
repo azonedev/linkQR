@@ -50,7 +50,7 @@
             </div>
             <hr>
             <!-- filter by date range -->
-            <div class="date-range mb-3">
+            {{-- <div class="date-range mb-3">
                 <form action="{{ url('dashboard') }}" method="GET" class="d-flex justify-content-between">
                     @if (isset($_GET['link_id']))
                         <input value="{{ $_GET['link_id'] }}" name="link_id" type="text" hidden>
@@ -68,7 +68,7 @@
                     <button class="btn btn-sm btn-primary ml-3">Apply <img
                             src="{{ asset('/') }}assets/icons/chevrons-right.svg" alt=""></button>
                 </form>
-            </div>
+            </div> --}}
 
             <!-- visitors chart -->
             <div class="col-lg-9">
@@ -147,8 +147,12 @@
 @endsection
 @section('template-script')
     <script>
+        const visitorData = <?php echo $visitorsChartData;  ?>;
         const locationData = <?php echo $locationChartData;  ?>;
         const osData = <?php echo $osChartData;  ?>;
+
+        let visitorLabels = visitorData.labels;
+        let visitorValues = visitorData.values;
         // visitors chart
         var options = {
             chart: {
@@ -156,10 +160,10 @@
             },
             series: [{
                 name: 'sales',
-                data: [30, 40, 70, 120, 49, 60, 70, 91, 125, 123, 140]
+                data: visitorValues
             }],
             xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Nov', 'Dec']
+                categories: visitorLabels
             }
         }
 
