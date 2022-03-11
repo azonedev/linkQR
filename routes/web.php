@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\GithubAuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LinkGenerateController;
+use App\Http\Controllers\LinksController;
 use App\Http\Controllers\UrlRedirectController;
 
 /*
@@ -43,6 +44,7 @@ Route::prefix('auth')->group(function () {
 
 Route::group(['middleware' => 'UserAction'], function () {
     Route::get('dashboard',[DashboardController::class,'index']);
+    Route::get('links',[LinksController::class,'index']);
 });
 
 // --------- URL Redirect --------- //
