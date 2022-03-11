@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AntiSpamController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FacebookAuthController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,8 @@ Route::prefix('auth')->group(function () {
 Route::group(['middleware' => 'UserAction'], function () {
     Route::get('dashboard',[DashboardController::class,'index']);
     Route::get('links',[LinksController::class,'index']);
+    Route::get('anti-spam',[AntiSpamController::class,'index']);
+    Route::put('anti-spam/{id}',[AntiSpamController::class,'update']);
 });
 
 // --------- URL Redirect --------- //
