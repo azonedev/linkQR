@@ -123,12 +123,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $i = 1;
-                    @endphp
-                    @foreach ($visitors_table as $visitor)  
+                    @foreach ($visitors_table as $key=>$visitor)  
                     <tr>
-                        <th scope="row">{{$i++}}</th>
+                        <th scope="row">{{$key+1}}</th>
                         <td>{{$visitor->country}}</td>
                         <td>{{$visitor->device}}</td>
                         <td>{{$visitor->browser}}</td>
