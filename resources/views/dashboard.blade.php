@@ -107,7 +107,7 @@
             <!-- table -->
             <div class="d-flex justify-content-between pt-5">
                 <span class="h4 fw-bold font-primary">Visitors Data on Table :</span>
-                <span class="btn btn-blue"><img src="{{ asset('/') }}assets/icons/external-link.svg" alt=""> Export
+                <span class="btn btn-blue"><img src="{{ asset('/') }}assets/icons/external-link.svg" alt="" onclick="exportVisitorsTableData()"> Export
                     table as
                     CSV</span>
             </div>
@@ -259,5 +259,31 @@
 
         var chart = new ApexCharts(document.querySelector("#osChart"), options);
         chart.render();
+
+    </script>
+    <script src="https://cdn.tutorialjinni.com/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+    <script>
+        
+        function  exportVisitorsTableData(){
+            // Create an array of objects
+            const data = <?php echo $export_visitors_table_data; ?>;
+            // Convert to csv
+            const csv = $.csv.fromObjects(data);
+
+            // Download file as csv function
+            const downloadBlobAsFile = function(csv, filename){
+                var downloadLink = document.createElement("a");
+                var blob = new Blob([csv], { type: 'text/csv' });
+                var url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+                downloadLink.download = filename;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            }
+
+            // Download csv file
+            downloadBlobAsFile(csv, 'VisitorsTable.csv');
+        }
     </script>
 @endsection

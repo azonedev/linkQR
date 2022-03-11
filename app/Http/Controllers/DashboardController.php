@@ -29,6 +29,9 @@ class DashboardController extends Controller
        
         $visitors_table = Visitor::select('country','device','browser','traffic_source','os')->whereIn('link_id',$link_id)->orderBy('id','desc')->paginate(15);
 
-        return view('dashboard',compact('links','total_clicks','locationChartData','osChartData','visitors_table'));
+        // this data use to export visitors data as csv
+        $export_visitors_table_data = json_encode(Visitor::select('country','device','browser','traffic_source','os')->whereIn('link_id',$link_id)->orderBy('id','desc')->get());
+
+        return view('dashboard',compact('links','total_clicks','locationChartData','osChartData','visitors_table','export_visitors_table_data'));
     }
 }
