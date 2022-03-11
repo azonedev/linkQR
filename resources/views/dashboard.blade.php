@@ -73,19 +73,14 @@
             </div>
             <div class="col-lg-3 text-center p-5">
                 <div class="block bg-primary p-3 rounded text-white">
-                    150 <img src="{{asset('/')}}assets/icons/bar.svg" alt="">
+                    {{$total_clicks}} <img src="{{asset('/')}}assets/icons/bar.svg" alt="">
                     <hr>
                     Total Clicks
                 </div>
                 <div class="block bg-info p-3 mt-3 rounded text-white">
-                    13 <img src="{{asset('/')}}assets/icons/eye.svg" alt="">
+                    {{count($links)}} <img src="{{asset('/')}}assets/icons/eye.svg" alt="">
                     <hr>
-                    Active Links
-                </div>
-                <div class="block bg-warning p-3 mt-3 rounded text-white">
-                    5 <img src="{{asset('/')}}assets/icons/eye-off.svg" alt="">
-                    <hr>
-                    Expire Links
+                    <a href="{{url('links')}}">Total Links</a>
                 </div>
             </div>
             <!--visitors chart -->
