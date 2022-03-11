@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Services\CheckExpireDate;
 use App\Models\Link;
-use App\Services\SpamProtection;
 use Brian2694\Toastr\Facades\Toastr;
 
 class UrlRedirectController extends Controller
 {
+    public function __construct()
+    {
+        $url_data = Link::where('short_key',request()->route('short_key'))->first();
+
+        // Middleware for limiting request to protect spam
+        $this->middleware("throttle:$url_data->loadlimit,$url_data->within,$url_data->blockfor");
+    }
+
     public function redirectURL($short_key)
     {
         // if short_key less than 6 then redirect home
