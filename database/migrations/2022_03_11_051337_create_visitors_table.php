@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('city');
             $table->string('latitude');
-            $table->string('longitude,');
+            $table->string('longitude');
             $table->string('browser');
             $table->string('os');
             $table->string('device');

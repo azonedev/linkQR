@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CheckExpireDate;
 use App\Models\Link;
+use App\Services\VisitorInfo;
+use App\Services\CheckExpireDate;
 use Brian2694\Toastr\Facades\Toastr;
 
 class UrlRedirectController extends Controller
@@ -33,6 +34,9 @@ class UrlRedirectController extends Controller
             Toastr::warning("Request url isn't found");
             return redirect('/');
         }
+
+        // insert visitor's location & device info to visitors table
+        VisitorInfo::insert($url_data->id);
 
         return redirect()->away($url_data->long_url);
     }
