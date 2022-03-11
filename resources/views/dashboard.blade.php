@@ -172,7 +172,7 @@
 @section('template-script')
     <script>
         const locationData = <?php echo $locationChartData;  ?>;
-        console.log(locationData.labels);
+        const osData = <?php echo $osChartData;  ?>;
         // visitors chart
         var options = {
             chart: {
@@ -218,10 +218,12 @@
         chart.render();
 
 
+        let osLabels = osData.labels;
+        let osValues = osData.values;
         // osChart
 
         var options = {
-            series: [76, 67, 61, 90],
+            series: osValues,
             chart: {
                 height: 390,
                 type: 'radialBar',
@@ -248,7 +250,7 @@
                 }
             },
             colors: ['#1ab7ea', '#0084ff', '#39539E', '#0077B5'],
-            labels: ['Vimeo', 'Messenger', 'Facebook', 'LinkedIn'],
+            labels: osLabels,
             legend: {
                 show: true,
                 floating: true,

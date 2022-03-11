@@ -35,4 +35,17 @@ class VisitorsReport{
 
         return json_encode(VisitorsReport::getLabelValuesByData($data));
     }
+
+    public static function byOS($link_id)
+    {
+        $data = Visitor::select([
+            DB::raw('os as labels'),
+            DB::raw("(COUNT(*)) as count"),
+        ])
+        ->whereIn('link_id',$link_id)
+        ->groupBy('labels')
+        ->get();
+
+        return json_encode(VisitorsReport::getLabelValuesByData($data));
+    }
 }

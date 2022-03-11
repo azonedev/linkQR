@@ -25,9 +25,10 @@ class DashboardController extends Controller
         $total_clicks = Visitor::whereIn('link_id',$link_id)->count();
 
         $locationChartData = VisitorsReport::byLocation($link_id);
+        $osChartData = VisitorsReport::byOS($link_id);
 
         // return $locationChartData;
 
-        return view('dashboard',compact('links','total_clicks','locationChartData'));
+        return view('dashboard',compact('links','total_clicks','locationChartData','osChartData'));
     }
 }
