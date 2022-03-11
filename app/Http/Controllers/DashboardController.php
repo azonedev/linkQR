@@ -26,9 +26,9 @@ class DashboardController extends Controller
 
         $locationChartData = VisitorsReport::byLocation($link_id);
         $osChartData = VisitorsReport::byOS($link_id);
+       
+        $visitors_table = Visitor::select('country','device','browser','traffic_source','os')->whereIn('link_id',$link_id)->orderBy('id','desc')->paginate(15);
 
-        // return $locationChartData;
-
-        return view('dashboard',compact('links','total_clicks','locationChartData','osChartData'));
+        return view('dashboard',compact('links','total_clicks','locationChartData','osChartData','visitors_table'));
     }
 }

@@ -103,29 +103,6 @@
             </div> <!-- location & os chart-->
 
             <hr>
-            <!-- traffic source -->
-            <section id="traffic-source" class="p-3">
-                <h4 class="font-primary fw-bold">Traffic Source : </h4>
-                <br>
-
-                <div class="traffic-item d-flex justify-content-between border-bottom border-primary">
-                    <h6>facebook.com</h6>
-                    <h6>248</h6>
-                </div>
-                <div class="traffic-item d-flex justify-content-between border-bottom border-primary">
-                    <h6>google.com</h6>
-                    <h6>248</h6>
-                </div>
-                <div class="traffic-item d-flex justify-content-between border-bottom border-primary">
-                    <h6>Internal</h6>
-                    <h6>248</h6>
-                </div>
-                <div class="traffic-item d-flex justify-content-between border-bottom border-primary">
-                    <h6>Extranal</h6>
-                    <h6>248</h6>
-                </div>
-
-            </section><!-- #traffic-source-->
 
             <!-- table -->
             <div class="d-flex justify-content-between pt-5">
@@ -138,31 +115,30 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Device</th>
+                        <th scope="col">Browser</th>
+                        <th scope="col">OS</th>
+                        <th scope="col">Traffic Source</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($visitors_table as $visitor)  
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row">{{$i++}}</th>
+                        <td>{{$visitor->country}}</td>
+                        <td>{{$visitor->device}}</td>
+                        <td>{{$visitor->browser}}</td>
+                        <td>{{$visitor->os}}</td>
+                        <td>{{$visitor->traffic_source}}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
+            {{ $visitors_table->links() }}
         </section><!-- #analitices-->
 
 

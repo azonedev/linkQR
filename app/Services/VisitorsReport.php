@@ -48,4 +48,5 @@ class VisitorsReport{
 
         return json_encode(VisitorsReport::getLabelValuesByData($data));
     }
+
 }
