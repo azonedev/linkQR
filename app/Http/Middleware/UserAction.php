@@ -21,7 +21,7 @@ class UserAction
             return $next($request);
         }
         else{
-            Toastr::warning("Please, Login to short urls");
+            Toastr::warning("Please, Login to complete the action");
             return redirect('auth/login');
         }
     }
